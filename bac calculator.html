@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BAC Calculator</title>
+</head>
+<body>
+<form id="form" method="post" action="#">
+    <label for="beer">Beer</label>
+    <input type="text" id="beer" name="beer"><br>
+    <label for="wine">Wine</label>
+    <input type="text" id="wine" name="wine"><br>
+    <label for="shots">Shots</label>
+    <input type="text" id="shots" name="shots"><br>
+    <label for="hours">Hours</label>
+    <input type="text" id="hours" name="hours"><br>
+    <label for="weight">Weight</label>
+    <input type="text" id="weight" name="weight"><br>
+    <input type="submit" value="Submit" onClick= "bacFunction()">
+</form>
+<script type = "text/javascript">
+    $(document).ready(function () {
+        $("#button").click(function() {
+            $("#form").submit();
+            //get values
+            let bac = 0;
+            let weight = $('#weight').value();
+            let hours = $('#hours').value();
+            let beer = $('#beer').value();
+            let wine = $('#wine').value();
+            let shots = $('#shots').value();
+            let bac2 = (beer * 0.54);
+            let bac3 = (wine * 0.6);
+            let bac4 = (shots * 0.6);
+            //calculate BAC
+            let absorption = ((bac2 + bac3 + bac4) * 7.5);
+            let pounds = (absorption / weight);
+            function bacFunction() {
+                bac = (pounds - (hours * 0.015));
+            }
+            return bacFunction;
+        });
+    });
+</script>
+</body>
+</html>
